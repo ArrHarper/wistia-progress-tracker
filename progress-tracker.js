@@ -1,5 +1,3 @@
-// progress-tracker.js
-
 function createProgressTracker(video) {
   console.log("Creating progress tracker for video:", video.hashedId());
 
@@ -34,7 +32,7 @@ function createProgressTracker(video) {
   // Insert the progress bar after the Wistia container
   wistiaContainer.insertAdjacentElement('afterend', progressContainer);
 
-  let uniqueSecondsWatched;
+  let uniqueSecondsWatched = new Map();
   let lastReportedProgress = 0;
   let totalTime;
   let intervalId;
@@ -46,18 +44,14 @@ function createProgressTracker(video) {
     
     const secondsWatched = video.secondsWatchedVector();
 
-    if (!uniqueSecondsWatched || uniqueSecondsWatched.length !== totalTime) {
-      uniqueSecondsWatched = new Array(totalTime).fill(0);
-    }
-
     // Update uniqueSecondsWatched
     for (let i = 0; i < secondsWatched.length; i++) {
-      if (secondsWatched[i] > 0 && uniqueSecondsWatched[i] === 0) {
-        uniqueSecondsWatched[i] = 1;
+      if (secondsWatched[i] > 0 && !uniqueSecondsWatched.has(i)) {
+        uniqueSecondsWatched.set(i, 1);
       }
     }
 
-    const uniqueWatchedCount = uniqueSecondsWatched.reduce((acc, sec) => acc + sec, 0);
+    const uniqueWatchedCount = uniqueSecondsWatched.size;
     const percentageWatched = Math.min((uniqueWatchedCount / totalTime) * 100, 100);
     
     // Only update if the progress has changed
@@ -67,7 +61,7 @@ function createProgressTracker(video) {
       console.log("Progress updated:", Math.floor(percentageWatched) + "%");
       lastReportedProgress = percentageWatched;
 
-      // // Save progress in localStorage
+      // Save progress in localStorage
       // localStorage.setItem(`videoProgress_${video.hashedId()}`, percentageWatched);
 
       // If progress reaches 100%, stop tracking and log final progress
@@ -86,6 +80,7 @@ function createProgressTracker(video) {
     }
   };
 }
+
 
 // Wait for Wistia library to be available
 function initWistiaProgressTracker() {
