@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+#progress-container {
+  width: 640px;
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  height: 20px;
+  margin-top: 20px;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50;
+}
