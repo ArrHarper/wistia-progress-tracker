@@ -1,6 +1,6 @@
 # Wistia Player Progress Tracker
 
-The Player Progress Tracker is a prototype example of tracking a viewer's _unique video progress_ in realtime using the Wistia Player API.
+The Player Progress Tracker is a prototype example of tracking a viewer's _unique video progress_ in realtime using the [Wistia Player API](https://docs.wistia.com/docs/javascript-player-api).
 
 This is useful for any situation where you need to monitor viewer progress on a per-video basis and display that progress to the user or to a manager/admin. Some example use-cases:
 
@@ -18,9 +18,9 @@ This is designed to only track _unique progress_, e.g. if the viewer watches the
 
 The progress tracker utilizes several Player API methods:
 
-`video.duration()`: Gets the total length of the video.
-`video.secondsWatchedVector()`: Retrieves an array representing which seconds of the video have been watched.
-`video.hashedId()`: Identifies each unique video on the page.
+[video.duration()](https://docs.wistia.com/docs/javascript-player-api#duration): Gets the total length of the video.
+[video.secondsWatchedVector()](https://docs.wistia.com/docs/javascript-player-api#secondswatchedvector): Retrieves an array representing which seconds of the video have been watched.
+[video.hashedId()](https://docs.wistia.com/docs/javascript-player-api#hashedid): Identifies each unique video on the page.
 
 The most important method is `secondsWatchedVector()` which returns an array containing each unique second of the video, which is how we can both track progress and distinguish _unique progress_ on the video from segments being re-watched. Each item in the array represents 1 second in the video, and the value of each item represents how many times that unique second has been watched in the current session:
 

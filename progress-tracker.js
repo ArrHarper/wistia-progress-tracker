@@ -61,9 +61,6 @@ function createProgressTracker(video) {
       console.log("Progress updated:", Math.floor(percentageWatched) + "%");
       lastReportedProgress = percentageWatched;
 
-      // Save progress in localStorage
-      // localStorage.setItem(`videoProgress_${video.hashedId()}`, percentageWatched);
-
       // If progress reaches 100%, stop tracking and log final progress
       if (percentageWatched === 100) {
         clearInterval(intervalId);
