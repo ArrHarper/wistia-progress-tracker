@@ -14,6 +14,8 @@ When the page loads, `progress-tracker.js` injects a progress tracker bar beneat
 
 This is designed to only track _unique progress_, e.g. if the viewer watches the first 25%, then restarts the video and watches that same 25% again, the progress bar should only show 25% watched.
 
+![GIF of video progress tracker](images/chrome_i7UhJlTtRa.gif?raw=true)
+
 ## How It Works
 
 The progress tracker utilizes several Player API methods:
